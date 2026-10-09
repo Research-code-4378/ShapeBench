@@ -1,0 +1,53 @@
+{
+  "design_name": "my_design_001",
+
+  "le_sweep": 65,
+
+  "naca": {
+    "m": 0,
+    "p": 0,
+    "t": 12
+  },
+
+  "_meta": {
+    "design_name": {
+      "type": "string",
+      "description": "Unique label used as the output subfolder name."
+    },
+    "le_sweep": {
+      "type": "float",
+      "unit": "degrees",
+      "description": "Leading-edge sweep angle of the delta wing.",
+      "min": 45, "max": 80,
+      "training_values": [55, 65, 75]
+    },
+    "naca.m": {
+      "type": "int",
+      "description": "NACA 4-digit max camber as integer percent of chord (0 = symmetric).",
+      "options": [0, 2, 4],
+      "constraint": "When m=0, p must also be 0."
+    },
+    "naca.p": {
+      "type": "int",
+      "description": "NACA 4-digit position of max camber in tenths of chord.",
+      "options": [0, 4],
+      "constraint": "Must be 0 when m=0."
+    },
+    "naca.t": {
+      "type": "int",
+      "description": "NACA 4-digit max thickness as integer percent of chord.",
+      "min": 6, "max": 24,
+      "training_values": [10, 16, 24]
+    },
+    "_hardcoded": {
+      "root_chord_in": 25.734,
+      "twist_root_deg": 0.0,
+      "twist_tip_deg": 0.0,
+      "dihedral_deg": 0.0,
+      "naca_chord_length": 1.0,
+      "taper_ratio": 0.0,
+      "symmetric": true,
+      "note": "These match the VortexNet training dataset and must not be changed."
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "framework": "islands",
+  "environment": "BlendedNet",
+  "iterations": 500,
+  "inspirations": 5,
+  "initialize_n_sample": 3,
+  "action": "gaussain",
+  "num_islands": 1,
+  "mach": 0.3,
+  "re": 1e7,
+  "alpha": 4.0,
+  "debug": true
+}

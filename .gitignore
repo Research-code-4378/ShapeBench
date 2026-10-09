@@ -1,0 +1,54 @@
+# CFD_solver/ contains large Docker .tar images — excluded from git entirely.
+# Note: sbatch/CFD_solver/ is also covered by this rule (no leading slash = matches anywhere in tree).
+# This matters because sbatch/ was historically managed as a nested git repo (sbatch/.git) pointing
+# to the same remote as the parent repo. That created a dual-tracking
+# problem: the 53 files in sbatch/ were tracked by both repos simultaneously, meaning commits made
+# from inside sbatch/ and commits made from the parent could silently diverge until a push/pull synced
+# them via the shared remote. As of March 2026 the two histories were confirmed identical (14 commits,
+# same HEAD 4dee020) and sbatch/.git was removed — sbatch/ is now managed solely from the parent repo.
+CFD_solver/
+
+# Large simulation outputs / datasets (not code)
+**/results/
+**/save/
+environments/DrivAer_Star/data/
+environments/DrivAer_Star/test_case/
+
+# Environment variable files (may contain API keys)
+**/.env
+venv/
+
+# Python
+__pycache__/
+# Bulk run/output artifacts
+SAVED_DIRS*/
+run_*/
+**/run_*/
+**/runs/
+**/checkpoints/
+**/artifacts/
+**/wandb/
+**/mlruns/
+**/tensorboard/
+**/events.out.tfevents*
+**/*.npy
+**/*.npz
+**/*.h5
+**/*.pkl
+
+# Known heavy paths on this cluster
+SAVED_DIRS_reward_ld_ratio_constrained_m02_re1e7_LAM50/
+archive/
+logs/
+environments/solver_configs/
+
+# Runtime lockfile auto-created by fcntl.lockf in environment.py (no need to commit)
+environments/BlendedNet/model/.torchvision_lock
+
+# Mesh cache: generated .stl files keyed by design params, recreatable via generate_mesh()
+environments/BlendedNet/mesh_cache/
+
+# Personal docs logs — tracked in a separate private repo
+docs/
+!docs/README.md
+docs_backup*/
